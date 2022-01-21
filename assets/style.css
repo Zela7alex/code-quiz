@@ -1,6 +1,9 @@
 :root {
     background-color: rgb(179, 230, 254);
     font-size: 62.5%;
+    --main: rgb(199, 60, 192);
+    --2nd: rgb(118, 30, 180);
+    --3rd: rgb(201, 155, 247);
 }
 
 *{
@@ -17,7 +20,7 @@ h1, h2, h3, h4 {
 
 h1 {
     font-size: 5.4rem;
-    color: rgb(199, 60, 192);
+    color: var(--main);
     margin-bottom: 5rem;
 }
 
@@ -61,3 +64,24 @@ h3 {
     justify-content: center;
     align-items: center;
 }
+
+.btn {
+    font-size: 1.8rem;
+    padding: 1rem 0;
+    width: 20rem;
+    text-align: center;
+    border: 0.1rem solid var(--2nd);
+    margin-bottom: 1rem;
+    text-decoration: none;
+    color:var(--2nd);
+    background-color: var(--3rd);
+    border-radius: 10rem;
+}
+
+.btn:hover {
+    cursor: pointer;
+    box-shadow: 0 0.4rem 1.4rem var(--main);
+    transform: translateY(-0.2rem);
+    transition: transform 150ms;
+}
+
