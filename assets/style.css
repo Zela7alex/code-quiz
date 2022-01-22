@@ -48,6 +48,7 @@ h3 {
     align-items: center;
     max-width: 80rem;
     margin: 0 auto;
+    padding: 2rem;
 }
 
 /* children of .container will fill 100% */
@@ -63,6 +64,18 @@ h3 {
 .flex-center {
     justify-content: center;
     align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.hidden {
+    display: none;
 }
 
 .btn {
