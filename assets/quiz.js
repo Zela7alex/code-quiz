@@ -81,7 +81,8 @@ function startQuiz() {
 // This function will randomly get a new question with its choices>>
 function getNewQuestion() {
     if (availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
-        return window.location.assign("/end.html");
+        localStorage.setItem('mostRecentScore', score);
+        return window.location.assign("end.html");
     }
 
 
@@ -100,7 +101,7 @@ function getNewQuestion() {
 
     acceptingAnswers = true;
 
-    };
+};
 
 choices.forEach(choice => {
     choice.addEventListener('click', e => {
@@ -109,21 +110,34 @@ choices.forEach(choice => {
         acceptingAnswers = false;
         var selectedChoice = e.target;
         var selectedAnswer = selectedChoice.dataset["number"];
-        
-        const classToApply = 
+
+        const classToApply =
             selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
-            console.log(classToApply)
-        
-        
-        //colors for correct and incorrect answers w/ timeout to return color
+        console.log(classToApply)
+
+
+        //increment score function being called to increment using correct points
+        if (classToApply === "correct") {
+            incrementScore(CORRECT_POINTS)
+        }
+
+        //Colors for correct and incorrect answers w/ timeout to return color
 
         selectedChoice.parentElement.classList.add(classToApply);
 
-        setTimeout( () => {
-        selectedChoice.parentElement.classList.remove(classToApply);
-        getNewQuestion();
+        setTimeout(() => {
+            selectedChoice.parentElement.classList.remove(classToApply);
+            getNewQuestion();
         }, 1000);
     });
 });
+
+incrementScore = num => {
+    score += num;
+    console.log(num)
+
+}
+
+
 
 startQuiz();
