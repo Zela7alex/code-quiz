@@ -2,11 +2,12 @@ var question = document.getElementById("question");
 var choices = Array.from(document.getElementsByClassName("choice-text"));
 
 var currentQuestion = {};
-var acceptingAnswers = true;
+var acceptingAnswers = false;
 var score = 0;
 var questionCounter = 0;
 var availableQuestions = [];
 
+//Questions array 
 let questions = [{
     question: "Inside which HTML element do we put the Javascript??",
     choice1: "<script>",
@@ -64,8 +65,8 @@ let questions = [{
 }
 ];
 
-const CORRECT_POINTS = 10;
-const MAX_QUESTIONS = 7;
+var CORRECT_POINTS = 10;
+var MAX_QUESTIONS = 7;
 
 //Created startQuiz function by passing in getNewQuestion
 function startQuiz() {
@@ -75,19 +76,54 @@ function startQuiz() {
     availableQuestions = [...questions];
     getNewQuestion();
 };
-startQuiz()
 
-// This function will randomly get a new question with its choices
+
+// This function will randomly get a new question with its choices>>
 function getNewQuestion() {
+    if (availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
+        return window.location.assign("/end.html");
+    }
+
 
     questionCounter++;
     var questionIndex = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[questionIndex];
     question.innerText = currentQuestion.question;
 
-    choices.forEach( choice => {
+    choices.forEach(choice => {
         var number = choice.dataset['number'];
         choice.innerText = currentQuestion['choice' + number];
-    })
-};
+    });
 
+    //cuts out question just used so that the function does not use it again>>>
+    availableQuestions.splice(questionIndex, 1);
+
+    acceptingAnswers = true;
+
+    };
+
+choices.forEach(choice => {
+    choice.addEventListener('click', e => {
+        if (!acceptingAnswers) return;
+
+        acceptingAnswers = false;
+        var selectedChoice = e.target;
+        var selectedAnswer = selectedChoice.dataset["number"];
+        
+        const classToApply = 
+            selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
+            console.log(classToApply)
+        
+        
+        //colors for correct and incorrect answers w/ timeout to return color
+
+        selectedChoice.parentElement.classList.add(classToApply);
+
+        setTimeout( () => {
+        selectedChoice.parentElement.classList.remove(classToApply);
+        getNewQuestion();
+        }, 1000);
+    });
+});
+
+startQuiz();
