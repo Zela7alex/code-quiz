@@ -11,5 +11,8 @@ If the user chooses the correct answer choice, that choice will become the color
 ##
 The quiz includes a timer that runs down the clock by 2 minutes.Each choice chosen incorrectly reduces the user's points by 5. The user may choose to retake the quiz at the end by accessing the homescreen. 
 
+Gitpages: https://zela7alex.github.io/code-quiz/
+Github: https://github.com/Zela7alex/code-quiz
+
 
 ![Screen Shot 2022-01-23 at 11 12 17 PM](https://user-images.githubusercontent.com/93490778/150721380-d713a840-2a4b-48a6-b0b5-d524a5f01657.png)
