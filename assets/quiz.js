@@ -108,7 +108,7 @@ function runGame() {
 
 // *** FUNCTION - Ends game and redirects to highscores
 function endGame() {
-    window.location.href = 'highScores.html';
+    window.location.href = 'highscores.html';
 
 }
 
