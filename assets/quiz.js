@@ -100,7 +100,7 @@ function keepTime() {
 
     }
 }
-// *** FUNCTION - Keeps the time for th 
+// *** FUNCTION - Keeps the time for the clock
 function runGame() {
     setInterval(keepTime, 1000);
     nextQuestion();
